@@ -15,6 +15,10 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth import views as auth_views
+
+from Account import views as accounts_views
 from rest_framework.routers import DefaultRouter
 
 # from musics import views
@@ -24,7 +28,10 @@ router = DefaultRouter()
 router.register(r'music', MusicViewSet)
 
 urlpatterns = [
-    url(r'^index/', index),
+    url(r'^index/', index, name='index'),
+    url(r'^signup/$', accounts_views.signup, name='signup'),
+    url(r'^$', auth_views.login, {'template_name': 'login.html'}, name='login'),
+    url(r'^logout/$', auth_views.logout, {'next_page': '/'}, name='logout'),
     url(r'^admin/', admin.site.urls),
     url(r'^api/', include(router.urls))
 ]

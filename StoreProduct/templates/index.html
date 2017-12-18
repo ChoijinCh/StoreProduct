@@ -6,14 +6,33 @@
     {% load static %}
     <link rel="stylesheet" href="{% static 'stylesheets/bootstrap.min.css' %}" type="text/css"/>
     <link rel="stylesheet" href="{% static 'stylesheets/jquery.dataTables.css' %}" type="text/css"/>
+    <style type="text/css">
+        nav {
+            right: 0;
+            position: absolute;
+        }
+        a {
+            text-decoration: none;
+        }
+    </style>
 </head>
 <body>
+    <nav class="nav-class">
+      <form class="nav-form">
+        {% if user.is_authenticated %}
+          <a href="#" class="menu-item" id="userMenu" data-toggle="dropdown">{{ user.username }}</a>
+          <a href="{% url 'logout' %}" class="menu-item">СИСТЕМЭЭС ГАРАХ</a>
+        {% else %}
+          <a href="{% url 'login' %}" class="menu-item">НЭВТРЭХ</a>
+          <a href="{% url 'signup' %}" class="menu-item">БҮРТГҮҮЛЭХ</a>
+        {% endif %}
+      </form>
+    </nav>
 <div class="container">
     <div class="jumbotron">
         <h1>Дэлгүүрийн бараа бүртгэл, тооллогын систем</h1>
         <p>Таны бүх барааны бүртгэл, тооцоо нэг газар...</p>
     </div>
-
     <!-- New  button -->
     <div class="text-center">
         <button type="button" data-dismiss="modal" class="btn btn-primary" id="new">Шинээр үүсгэх</button>
