@@ -2,27 +2,40 @@
 <html>
 <head>
   <title>Нэвтрэх</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
-<body>
-  <h2>Нэвтрэх</h2>
-  <form method="post">
-    {% csrf_token %}
-    {% for field in form %}
-      <p>
-        {{ field.label_tag }}<br>
-        {{ field }}
-        {% if field.help_text %}
-          <small style="color: grey">{{ field.help_text }}</small>
-        {% endif %}
-        {% for error in field.errors %}
-          <p style="color: red">{{ error }}</p>
+<body bgcolor="gray">
+  <div class="container" >
+    <div class="form-group" align="center" >
+      <h2>Нэвтрэх</h2>
+      <form method="post">  
+        {% csrf_token %}
+        {% for field in form %}
+          <p>
+            {{ field.label_tag }}<br>
+            {{ field }}
+            {% if field.help_text %}
+              <small style="color: grey">{{ field.help_text }}</small>
+            {% endif %}
+            {% for error in field.errors %}
+              <p style="color: red">{{ error }}</p>
+            {% endfor %}
+          </p>
+        
+        
         {% endfor %}
-      </p>
-    {% endfor %}
-    <button type="submit">НЭВТРЭХ</button>
-  </form>
-  <br>
-  <a href="{% url 'signup' %}" class="signup_btn">БҮРТГҮҮЛЭХ</a>
+        </div>
+        <div class="form-group" align="center">
+          <button type="submit">НЭВТРЭХ</button>
+        </div>
+      </form>
+    <br>
+    <div class="form-group" align="center">
+    <a href="{% url 'signup' %}" class="signup_btn">БҮРТГҮҮЛЭХ</a>
+  </div>
+  </div>
 </body>
 </html>
   
